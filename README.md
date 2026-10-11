@@ -1,17 +1,21 @@
-# ponsel_mart
+# Ponsel Mart
 
-A new Flutter project.
+Aplikasi marketplace penjualan HP yang dibuat dengan Flutter.
 
-## Getting Started
+## Demo
 
-This project is a starting point for a Flutter application.
+🔗 **https://ponsel-mart-19896.firebaseapp.com**
 
-A few resources to get you started if this is your first Flutter project:
+## Fitur
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- Beranda, Produk, About Me, Tentang Kami, dan Kontak
+- Pencarian dan filter produk berdasarkan merek
+- Keranjang dan checkout (voucher, metode pembayaran)
+- Status pesanan: Menunggu pembayaran → Diproses → Berhasil
+- Detail transaksi
+- Rating dan review dengan foto bukti
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Dibuat oleh
+
+Javier Aniwa Wijaya
