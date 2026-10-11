@@ -18,9 +18,9 @@ class Product {
 
 // ---------- MOCK DATA ----------
 const teamData = [
-  ('Rina Aulia', 'Pemilik & CEO', 5),
-  ('Dimas Pratama', 'Kepala Gudang', 12),
-  ('Salsa Putri', 'Customer Service', 47),
+  ('Javier', 'Pemilik & CEO', 5),
+  ('Mas Amba', 'Kepala Gudang', 12),
+  ('Mas Azrie;', 'Customer Service', 47),
 ];
 const testimoni = [
   ('Budi S.', 'Barang sampai cepat, HP sesuai deskripsi. Mantap!', 5),
@@ -472,7 +472,7 @@ class AboutPage extends StatelessWidget {
       Center(child: ClipOval(child: NetImg('https://i.pravatar.cc/240?img=15', w: 108, h: 108, icon: Icons.person))),
       const SizedBox(height: 16),
       // Ganti teks di bawah dengan data kamu
-      Center(child: Text('Nama Kamu', style: t.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800))),
+      Center(child: Text('Javier', style: t.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800))),
       Center(child: Text('Pemilik Ponsel Mart', style: TextStyle(color: t.colorScheme.onSurfaceVariant))),
       const SizedBox(height: 20),
       const Card(
@@ -483,9 +483,9 @@ class AboutPage extends StatelessWidget {
         ),
       ),
       const SizedBox(height: 8),
-      const ListTile(leading: Icon(Icons.email_outlined), title: Text('email@contoh.com')),
-      const ListTile(leading: Icon(Icons.camera_alt_outlined), title: Text('@instagramkamu')),
-      const ListTile(leading: Icon(Icons.location_on_outlined), title: Text('Kota kamu')),
+      const ListTile(leading: Icon(Icons.email_outlined), title: Text('25051204431@mhs.unesa.ac.id')),
+      const ListTile(leading: Icon(Icons.camera_alt_outlined), title: Text('@javieraniwa_')),
+      const ListTile(leading: Icon(Icons.location_on_outlined), title: Text('Magetan')),
     ]);
   }
 }
@@ -590,9 +590,9 @@ class _KontakPageState extends State<KontakPage> {
     return ListView(padding: const EdgeInsets.all(16), children: [
       Text('Hubungi kami', style: h),
       const SizedBox(height: 8),
-      const Card(child: ListTile(leading: Icon(Icons.chat_outlined), title: Text('WhatsApp'), subtitle: Text('0812-3456-7890'))),
-      const Card(child: ListTile(leading: Icon(Icons.email_outlined), title: Text('Email'), subtitle: Text('halo@ponselmart.id'))),
-      const Card(child: ListTile(leading: Icon(Icons.location_on_outlined), title: Text('Alamat'), subtitle: Text('Jl. Contoh No. 12, Surabaya'))),
+      const Card(child: ListTile(leading: Icon(Icons.chat_outlined), title: Text('WhatsApp'), subtitle: Text('0819-4962-6876'))),
+      const Card(child: ListTile(leading: Icon(Icons.email_outlined), title: Text('Email'), subtitle: Text('halomok@ponselmart.id'))),
+      const Card(child: ListTile(leading: Icon(Icons.location_on_outlined), title: Text('Alamat'), subtitle: Text('Jl. Penggadain No. 12, Surabaya'))),
       const Card(child: ListTile(leading: Icon(Icons.schedule_outlined), title: Text('Jam buka'), subtitle: Text('Setiap hari, 09.00 - 21.00 WIB'))),
       const SizedBox(height: 16),
       Text('Kirim pesan', style: h),
