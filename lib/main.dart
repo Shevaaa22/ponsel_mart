@@ -43,6 +43,12 @@ const products = [
   Product('Vivo V30e', 'Vivo', '8/256 GB · Kamera Aura Light', 4699000, 0, 4.5, 402, 'Baru', 'Malang', Color(0xFFC06BFF), Color(0xFF4A1A8A)),
   Product('Galaxy S21 FE', 'Samsung', 'Bekas · 8/256 GB', 4350000, 0, 4.7, 296, 'Bekas', 'Jakarta', Color(0xFF8FB3FF), Color(0xFF2A3F7A)),
   Product('Infinix Note 40', 'Infinix', '8/256 GB · Charge 70W', 2799000, 3199000, 4.5, 2210, 'Baru', 'Surabaya', Color(0xFFFF6B8B), Color(0xFF8A1738)),
+    Product('iPhone 15 128 GB', 'Apple', '128 GB · Dynamic Island · USB-C', 12999000, 13999000, 4.9, 860, 'Baru', 'Jakarta', Color(0xFFF6D9DE), Color(0xFFC98F9C)),
+  Product('Galaxy S24', 'Samsung', '8/256 GB · Galaxy AI · AMOLED 120Hz', 11999000, 12999000, 4.8, 640, 'Baru', 'Surabaya', Color(0xFFC3B2F0), Color(0xFF6B55B8)),
+  Product('Realme 12 Pro 5G', 'Realme', '8/256 GB · Kamera Periskop', 5299000, 5799000, 4.7, 920, 'Baru', 'Bandung', Color(0xFF8BE0AE), Color(0xFF2E8B63)),
+  Product('OPPO A3', 'OPPO', '6/128 GB · Baterai 5100mAh', 2499000, 0, 4.5, 1480, 'Baru', 'Malang', Color(0xFF8DBBFF), Color(0xFF2F5DC4)),
+  Product('Redmi 13C', 'Xiaomi', '6/128 GB · Layar 90Hz', 1799000, 1999000, 4.4, 3320, 'Baru', 'Semarang', Color(0xFF454B59), Color(0xFF10131A)),
+  Product('iPhone 11 64 GB', 'Apple', 'Bekas · Baterai 85%', 3950000, 0, 4.6, 275, 'Bekas', 'Surabaya', Color(0xFFE2D8F5), Color(0xFF9C86CF)),
 ];
 
 String rp(int x) {
