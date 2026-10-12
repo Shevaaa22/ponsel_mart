@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 void main() => runApp(const PonselMartApp());
@@ -68,8 +69,17 @@ class PonselMartApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Ponsel Mart',
-        theme: ThemeData(useMaterial3: true, colorSchemeSeed: const Color(0xFF1F3BFF)),
-        darkTheme: ThemeData(useMaterial3: true, brightness: Brightness.dark, colorSchemeSeed: const Color(0xFF1F3BFF)),
+               theme: ThemeData(
+          useMaterial3: true,
+          colorSchemeSeed: const Color.fromARGB(255, 0, 29, 246),
+          fontFamily: GoogleFonts.poppins().fontFamily,
+        ),
+        darkTheme: ThemeData(
+          useMaterial3: true,
+          brightness: Brightness.dark,
+          colorSchemeSeed: const Color.fromARGB(255, 0, 30, 255),
+          fontFamily: GoogleFonts.poppins().fontFamily,
+        ),
         themeMode: ThemeMode.system,
         home: const Shell(),
       );
