@@ -287,7 +287,7 @@ class Shell extends StatefulWidget {
 }
 
 class _ShellState extends State<Shell> {
-  int page = 0;
+  int page = 6;
   final Map<int, int> cart = {};
   int get count => cart.values.fold(0, (a, b) => a + b);
   static const titles = [
@@ -297,6 +297,7 @@ class _ShellState extends State<Shell> {
     'Tentang Kami',
     'Kontak',
     'Pesanan',
+    'Masuk',
   ];
 
   void snack(String t) => ScaffoldMessenger.of(context)
@@ -447,6 +448,12 @@ class _ShellState extends State<Shell> {
       const TentangPage(),
       KontakPage(onGoProduk: () => setState(() => page = 1)),
       PesananPage(onGoProduk: () => setState(() => page = 1)),
+      LoginPage(
+        onLogin: () {
+          setState(() => page = 0);
+          snack('Berhasil masuk ke Ponsel Mart');
+        },
+      ),
     ];
     return Scaffold(
       appBar: AppBar(
@@ -543,6 +550,205 @@ class _ShellState extends State<Shell> {
   }
 }
 
+// ---------- LOGIN ----------
+class LoginPage extends StatefulWidget {
+  final VoidCallback onLogin;
+  const LoginPage({super.key, required this.onLogin});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+  bool _showPassword = false;
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
+  InputDecoration _decoration(String label, IconData icon) => InputDecoration(
+    labelText: label,
+    prefixIcon: Icon(icon),
+    filled: true,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+      borderSide: BorderSide.none,
+    ),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 460),
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color(0xFF1F3BFF), Color(0xFF4B1FFF)],
+                  ),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x331F3BFF),
+                      blurRadius: 22,
+                      offset: Offset(0, 10),
+                    ),
+                  ],
+                ),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.smartphone_rounded,
+                      color: Colors.white,
+                      size: 38,
+                    ),
+                    SizedBox(height: 18),
+                    Text(
+                      'Selamat datang kembali!',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    SizedBox(height: 6),
+                    Text(
+                      'Masuk untuk lanjut belanja HP favoritmu di Ponsel Mart.',
+                      style: TextStyle(color: Colors.white70, height: 1.4),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 18),
+              Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(22),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Masuk ke akun',
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(fontWeight: FontWeight.w800),
+                        ),
+                        const SizedBox(height: 18),
+                        TextFormField(
+                          controller: _email,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: _decoration(
+                            'Email',
+                            Icons.email_outlined,
+                          ),
+                          validator: (value) =>
+                              value == null || !value.contains('@')
+                              ? 'Masukkan alamat email yang valid'
+                              : null,
+                        ),
+                        const SizedBox(height: 14),
+                        TextFormField(
+                          controller: _password,
+                          obscureText: !_showPassword,
+                          decoration:
+                              _decoration(
+                                'Kata sandi',
+                                Icons.lock_outline,
+                              ).copyWith(
+                                suffixIcon: IconButton(
+                                  tooltip: _showPassword
+                                      ? 'Sembunyikan kata sandi'
+                                      : 'Tampilkan kata sandi',
+                                  onPressed: () => setState(
+                                    () => _showPassword = !_showPassword,
+                                  ),
+                                  icon: Icon(
+                                    _showPassword
+                                        ? Icons.visibility_off_outlined
+                                        : Icons.visibility_outlined,
+                                  ),
+                                ),
+                              ),
+                          validator: (value) =>
+                              value == null || value.length < 6
+                              ? 'Kata sandi minimal 6 karakter'
+                              : null,
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () => ScaffoldMessenger.of(context)
+                                .showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Fitur lupa kata sandi akan segera tersedia.',
+                                    ),
+                                  ),
+                                ),
+                            child: const Text('Lupa kata sandi?'),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 52,
+                          child: FilledButton(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: const Color(0xFF1F3BFF),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                            ),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate())
+                                widget.onLogin();
+                            },
+                            child: const Text(
+                              'Masuk',
+                              style: TextStyle(fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'Belum punya akun? Hubungi admin Ponsel Mart untuk mendaftar.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: colors.onSurfaceVariant,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 // ---------- KOMPONEN ----------
 class PhoneArt extends StatelessWidget {
   final Product p;
@@ -610,7 +816,7 @@ class ProductCard extends StatelessWidget {
                       p.asset,
                       height: 112,
                       fit: BoxFit.contain,
-                      errorBuilder: (_, __, ___) => PhoneArt(p),
+                      errorBuilder: (_, _, _) => PhoneArt(p),
                     ),
                   ),
                 ),
@@ -789,7 +995,7 @@ class BerandaPage extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: promo.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            separatorBuilder: (_, _) => const SizedBox(width: 12),
             itemBuilder: (_, k) => SizedBox(
               width: 190,
               child: ProductCard(
@@ -989,7 +1195,7 @@ class NetImg extends StatelessWidget {
     width: w,
     height: h,
     fit: BoxFit.cover,
-    errorBuilder: (_, __, ___) => Container(
+    errorBuilder: (_, _, _) => Container(
       width: w,
       height: h,
       color: Colors.blueGrey.withAlpha(60),
@@ -1258,8 +1464,8 @@ class _KontakPageState extends State<KontakPage> {
 Route<T> slideRoute<T>(Widget page) => PageRouteBuilder<T>(
   transitionDuration: const Duration(milliseconds: 350),
   reverseTransitionDuration: const Duration(milliseconds: 250),
-  pageBuilder: (_, __, ___) => page,
-  transitionsBuilder: (_, anim, __, child) {
+  pageBuilder: (_, _, _) => page,
+  transitionsBuilder: (_, anim, _, child) {
     final c = CurvedAnimation(parent: anim, curve: Curves.easeOutCubic);
     return FadeTransition(
       opacity: c,
